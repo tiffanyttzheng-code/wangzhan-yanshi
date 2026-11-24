@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>自负 ARROGISM · 叙事向RPG游戏</title>
+<link rel="preload" as="image" href="./assets/img/img144.webp">
+<style>
+@font-face{font-family:"XuanheiF28";src:url("./assets/fonts/xuanhei-f28.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"NotoSCBoldF28";src:url("./assets/fonts/notosc-bold-f28.woff2") format("woff2");font-weight:700;font-display:swap}
+:root{--yh:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;overflow-x:hidden}
+/* 1880x5400 Figma stage, scaled to viewport width by the script below */
+.wrap{position:relative;width:100%;overflow:hidden}
+.stage{position:absolute;left:0;top:0;width:1880px;height:5400px;background:#000;transform-origin:0 0;transform:scale(var(--s,1))}
+.a{position:absolute;margin:0;display:block}
+.t{white-space:nowrap;font-family:var(--yh);font-weight:400;color:#000}
+.b,.t b,.para b{font-weight:700}
+.v>i,.c>.v>i{position:absolute;display:block}
+.v img{display:block;width:100%;height:100%}
+.c{display:flex;align-items:center;justify-content:center}
+.c>.v,.c>b{position:relative;flex:none;display:block}
+.bg{left:0;width:1880px;height:1080px;object-fit:cover}
+.fy{transform:scaleY(-1)}
+.card{overflow:hidden;border-radius:12px}
+.tiles{filter:blur(7px)}
+.xh{font-family:"XuanheiF28",var(--yh);font-weight:400;line-height:normal;white-space:nowrap;color:#000}
+.sticker{width:311.44px;-webkit-text-stroke:12px #fff;paint-order:stroke fill}
+.hd{font-family:"XuanheiF28",var(--yh);font-weight:400;font-size:48px;line-height:normal;white-space:nowrap;color:#fff;-webkit-text-stroke:6px #000;paint-order:stroke fill}
+.tag{font-family:"NotoSCBoldF28","Noto Sans SC",var(--yh);font-weight:700;font-size:24px;line-height:normal;color:#5e5e5e;white-space:nowrap}
+.para{width:699px;font-family:var(--yh);font-size:20px;letter-spacing:.8px;line-height:29px;color:#000}
+.para .hl{background:#fff;padding:0 2px}
+.ok{width:25px;height:25px;background:#ffd15c;border:4px solid #6c6c6c}
+.proto{background:#fff;overflow:hidden}
+.proto iframe{display:block;width:100%;height:100%;border:0}
+.lk{color:#757575;text-decoration:underline;cursor:pointer}
+.lk:hover{color:#000}
+/* 第二页 tabs — interaction modelled on arrogism.html .sx-tab */
+.p2{left:0;top:0;width:0;height:0}
+.pn{position:absolute;left:0;top:0;opacity:0;transform:translateY(14px);visibility:hidden;transition:opacity .3s ease,transform .3s ease,visibility 0s .3s}
+.pn[hidden]{display:block}
+.pn.is-on{opacity:1;transform:none;visibility:visible;transition:opacity .3s ease,transform .3s ease}
+.ovimg{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 25%,#000 76.45%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 25%,#000 76.45%,transparent 100%)}
+.pbox{background:rgba(255,255,255,.64);border-radius:35px}
+.tabs{display:flex;align-items:flex-start;z-index:3}
+.tab{--ease:cubic-bezier(.34,1.56,.64,1);position:relative;flex:none;height:71px;margin:0 14px 0 0;padding:0;border:0;background:none;cursor:pointer;font:inherit;transform-origin:30% 60%;
+  transition:width .35s var(--ease),margin .35s var(--ease),transform .2s var(--ease)}
+.tab:not(.is-on){width:179px}
+.tab.is-on{width:265px;margin-right:9px;cursor:default}
+.tab__big{position:absolute;left:29px;top:14px;width:236px;height:48px;transition:opacity .22s ease}
+.tab__small{position:absolute;left:0;top:21px;width:179px;height:39px;overflow:hidden;transition:opacity .22s ease,filter .25s ease}
+.tab__small img{position:absolute;left:-17.41%;top:0;width:117.19%;height:100%;max-width:none}
+.tab.is-on .tab__small,.tab:not(.is-on) .tab__big{opacity:0}
+.tab__icon{position:absolute;left:0;top:0;width:79px;height:71px;z-index:2;opacity:0;transform:scale(.6);transform-origin:50% 85%;pointer-events:none;transition:transform .35s var(--ease),opacity .25s ease}
+.tab__icon>.v,.tab__icon>.c{position:absolute}
+.tab.is-on .tab__icon{opacity:1;transform:scale(1)}
+.tab__label{position:absolute;z-index:1;white-space:nowrap;font-family:"XuanheiF28",var(--yh);line-height:1;color:#969696;
+  transition:left .3s var(--ease),top .3s var(--ease),font-size .3s var(--ease),color .2s ease,letter-spacing .2s ease}
+.tab.is-on .tab__label{left:86px;top:22px;font-size:40px;color:#000}
+.tab:not(.is-on) .tab__label{left:50%;top:28px;font-size:32px;transform:translateX(-50%)}
+.tab__dot{position:absolute;left:167px;top:13px;width:17px;height:17px;border-radius:50%;background:#ff0a3c;animation:p2-pulse 1.8s ease-in-out infinite}
+.tab.is-on .tab__dot,.tab__dot.is-seen{display:none}
+@keyframes p2-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,10,60,.5)}50%{box-shadow:0 0 0 8px rgba(255,10,60,0)}}
+.tabs:has(.tab:not(.is-on):hover) .tab.is-on .tab__icon{transform:scale(1.12) rotate(-6deg)}
+.tab:not(.is-on):hover{transform:scale(1.08) rotate(-1.5deg) translateY(-2px)}
+.tab:not(.is-on):hover .tab__small{filter:drop-shadow(0 6px 8px rgba(0,0,0,.22))}
+.tab:not(.is-on):hover .tab__label{color:#111;letter-spacing:1px}
+.tab:not(.is-on):active{transform:scale(1.02) rotate(-.5deg);transition-duration:.1s}
+.tab:focus-visible{outline:3px solid #fcba1b;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.tab,.tab__label,.tab__icon,.tab__big,.tab__small,.pn{transition:none}.tab__dot{animation:none}}
+</style>
+</head>
+<body>
+<main class="wrap" id="wrap">
+<div class="stage" id="stage">
+<!--STAGE-->
+</div>
+</main>
+<script>
+(function(){var w=document.getElementById('wrap'),st=document.getElementById('stage');
+function fit(){var s=document.documentElement.clientWidth/1880;st.style.setProperty('--s',s);w.style.height=(5400*s)+'px'}
+fit();addEventListener('resize',fit);})();
+</script>
+<script>
+document.querySelectorAll('[data-tabs]').forEach(function(box){
+  var tabs=[].slice.call(box.querySelectorAll('[data-tab]')),panels=[].slice.call(box.querySelectorAll('[data-panel]'));
+  function show(tab,focus){
+    var k=tab.dataset.tab;
+    tabs.forEach(function(t){var on=t===tab;t.classList.toggle('is-on',on);t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;
+      if(on){var d=t.querySelector('.tab__dot');if(d)d.classList.add('is-seen')}});
+    panels.forEach(function(p){var on=p.dataset.panel===k;p.classList.toggle('is-on',on);p.hidden=!on});
+    if(focus)tab.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t)});
+    t.addEventListener('keydown',function(e){
+      var n={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabs.length-1}[e.key];
+      if(n===undefined)return;e.preventDefault();show(tabs[(n+tabs.length)%tabs.length],true)});
+  });
+});
+</script>
+</body>
+</html>

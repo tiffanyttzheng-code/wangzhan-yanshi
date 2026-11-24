@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>自负 ARROGISM · 叙事向RPG游戏</title>
+<link rel="preload" as="image" href="./assets/img/img144.webp">
+<style>
+@font-face{font-family:"XuanheiF28";src:url("./assets/fonts/xuanhei-f28.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"NotoSCBoldF28";src:url("./assets/fonts/notosc-bold-f28.woff2") format("woff2");font-weight:700;font-display:swap}
+:root{--yh:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;overflow-x:hidden}
+/* 1880x5400 Figma stage, scaled to viewport width by the script below */
+.wrap{position:relative;width:100%;overflow:hidden}
+.stage{position:absolute;left:0;top:0;width:1880px;height:5400px;background:#000;transform-origin:0 0;transform:scale(var(--s,1))}
+.a{position:absolute;margin:0;display:block}
+.t{white-space:nowrap;font-family:var(--yh);font-weight:400;color:#000}
+.b,.t b,.para b{font-weight:700}
+.v>i,.c>.v>i{position:absolute;display:block}
+.v img{display:block;width:100%;height:100%}
+.c{display:flex;align-items:center;justify-content:center}
+.c>.v,.c>b{position:relative;flex:none;display:block}
+.bg{left:0;width:1880px;height:1080px;object-fit:cover}
+.fy{transform:scaleY(-1)}
+.card{overflow:hidden;border-radius:12px}
+.tiles{filter:blur(7px)}
+.xh{font-family:"XuanheiF28",var(--yh);font-weight:400;line-height:normal;white-space:nowrap;color:#000}
+.sticker{width:311.44px;-webkit-text-stroke:12px #fff;paint-order:stroke fill}
+.hd{font-family:"XuanheiF28",var(--yh);font-weight:400;font-size:48px;line-height:normal;white-space:nowrap;color:#fff;-webkit-text-stroke:6px #000;paint-order:stroke fill}
+.tag{font-family:"NotoSCBoldF28","Noto Sans SC",var(--yh);font-weight:700;font-size:24px;line-height:normal;color:#5e5e5e;white-space:nowrap}
+.para{width:699px;font-family:var(--yh);font-size:20px;letter-spacing:.8px;line-height:29px;color:#000}
+.para .hl{background:#fff;padding:0 2px}
+.ok{width:25px;height:25px;background:#ffd15c;border:4px solid #6c6c6c}
+.proto{background:#fff;overflow:hidden}
+.proto iframe{display:block;width:100%;height:100%;border:0}
+.lk{color:#757575;text-decoration:underline;cursor:pointer}
+.lk:hover{color:#000}
+/* 第二页 tabs — interaction modelled on arrogism.html .sx-tab */
+.p2{left:0;top:0;width:0;height:0}
+.pn{position:absolute;left:0;top:0;opacity:0;transform:translateY(14px);visibility:hidden;transition:opacity .3s ease,transform .3s ease,visibility 0s .3s}
+.pn[hidden]{display:block}
+.pn.is-on{opacity:1;transform:none;visibility:visible;transition:opacity .3s ease,transform .3s ease}
+.ovimg{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 25%,#000 76.45%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 25%,#000 76.45%,transparent 100%)}
+.pbox{background:rgba(255,255,255,.64);border-radius:35px}
+.tabs{display:flex;align-items:flex-start;z-index:3}
+.tab{--ease:cubic-bezier(.34,1.56,.64,1);position:relative;flex:none;height:71px;margin:0 14px 0 0;padding:0;border:0;background:none;cursor:pointer;font:inherit;transform-origin:30% 60%;
+  transition:width .35s var(--ease),margin .35s var(--ease),transform .2s var(--ease)}
+.tab:not(.is-on){width:179px}
+.tab.is-on{width:265px;margin-right:9px;cursor:default}
+.tab__big{position:absolute;left:29px;top:14px;width:236px;height:48px;transition:opacity .22s ease}
+.tab__small{position:absolute;left:0;top:21px;width:179px;height:39px;overflow:hidden;transition:opacity .22s ease,filter .25s ease}
+.tab__small img{position:absolute;left:-17.41%;top:0;width:117.19%;height:100%;max-width:none}
+.tab.is-on .tab__small,.tab:not(.is-on) .tab__big{opacity:0}
+.tab__icon{position:absolute;left:0;top:0;width:79px;height:71px;z-index:2;opacity:0;transform:scale(.6);transform-origin:50% 85%;pointer-events:none;transition:transform .35s var(--ease),opacity .25s ease}
+.tab__icon>.v,.tab__icon>.c{position:absolute}
+.tab.is-on .tab__icon{opacity:1;transform:scale(1)}
+.tab__label{position:absolute;z-index:1;white-space:nowrap;font-family:"XuanheiF28",var(--yh);line-height:1;color:#969696;
+  transition:left .3s var(--ease),top .3s var(--ease),font-size .3s var(--ease),color .2s ease,letter-spacing .2s ease}
+.tab.is-on .tab__label{left:86px;top:22px;font-size:40px;color:#000}
+.tab:not(.is-on) .tab__label{left:50%;top:28px;font-size:32px;transform:translateX(-50%)}
+.tab__dot{position:absolute;left:167px;top:13px;width:17px;height:17px;border-radius:50%;background:#ff0a3c;animation:p2-pulse 1.8s ease-in-out infinite}
+.tab.is-on .tab__dot,.tab__dot.is-seen{display:none}
+@keyframes p2-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,10,60,.5)}50%{box-shadow:0 0 0 8px rgba(255,10,60,0)}}
+.tabs:has(.tab:not(.is-on):hover) .tab.is-on .tab__icon{transform:scale(1.12) rotate(-6deg)}
+.tab:not(.is-on):hover{transform:scale(1.08) rotate(-1.5deg) translateY(-2px)}
+.tab:not(.is-on):hover .tab__small{filter:drop-shadow(0 6px 8px rgba(0,0,0,.22))}
+.tab:not(.is-on):hover .tab__label{color:#111;letter-spacing:1px}
+.tab:not(.is-on):active{transform:scale(1.02) rotate(-.5deg);transition-duration:.1s}
+.tab:focus-visible{outline:3px solid #fcba1b;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.tab,.tab__label,.tab__icon,.tab__big,.tab__small,.pn{transition:none}.tab__dot{animation:none}}
+</style>
+</head>
+<body>
+<main class="wrap" id="wrap">
+<div class="stage" id="stage">
+<img class="a bg fy" src="./assets/img/img213.webp" alt="" style="top:1038px">
+<img class="a bg" src="./assets/img/img213.webp" alt="" style="top:2118px">
+<img class="a bg fy" src="./assets/img/img213.webp" alt="" style="top:3198px">
+<img class="a bg" src="./assets/img/img213.webp" alt="" style="top:4278px">
+<div class="a proto" style="left:135px;top:2965.91px;width:1611px;height:906px"><iframe src="https://tiffanyttzheng-code.github.io/jiaohu-yuanxing/" title="主菜单交互原型" loading="lazy"></iframe></div>
+<h2 class="a hd" style="left:1487px;top:2898px">&lt; 交互原型 &gt;</h2>
+<span class="a v" style="left:111px;top:2942px;width:108.285px;height:103.658px"><i style="inset:-3.86% 0 0 0"><img src="./assets/img/imgGroup729.svg" alt=""></i></span>
+<span class="a c" style="left:111.93px;top:3791.62px;width:108.285px;height:103.658px"><span class="v" style="width:108.285px;height:103.658px;transform:scaleY(-1)"><i style="inset:-3.86% 0 0 0"><img src="./assets/img/imgGroup731.svg" alt=""></i></span></span>
+<span class="a c" style="left:1667.71px;top:3796.25px;width:108.285px;height:103.658px"><span class="v" style="width:108.285px;height:103.658px;transform:rotate(180deg)"><i style="inset:-3.86% 0 0 0"><img src="./assets/img/imgGroup730.svg" alt=""></i></span></span>
+<i class="a" style="left:318px;top:3895px;width:1210px;height:42px;background:rgba(255,255,255,.53);border-radius:7px"></i>
+<p class="a t" style="left:333px;top:3901px;font-size:24px;letter-spacing:2.4px;line-height:normal;color:#757575">全屏演示链接：</p>
+<a class="a t lk" style="left:529px;top:3901px;font-size:24px;letter-spacing:2.4px;line-height:normal;color:#757575" href="https://tiffanyttzheng-code.github.io/jiaohu-yuanxing/" target="_blank" rel="noopener">主菜单交互原型</a>
+<p class="a t" style="left:747px;top:3901px;font-size:24px;letter-spacing:2.4px;line-height:normal;color:#757575">https://tiffanyttzheng-code.github.io/jiaohu-yuanxing/</p>
+<iframe class="a demo" src="https://player.bilibili.com/player.html?bvid=BV1ZeyozHEV2&amp;page=1&amp;autoplay=0" title="剧情演示" style="left:146px;top:4200px;width:769px;height:433px;border:0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><p class="a t demo-caption" style="left:146px;top:4656px;width:769px;text-align:center;font-size:29px;line-height:36px;font-weight:900">剧情演示</p>
+<iframe class="a demo" src="https://player.bilibili.com/player.html?bvid=BV1ZeyozHEV2&amp;page=4&amp;autoplay=0" title="图鉴展示" style="left:146px;top:4778px;width:769px;height:432px;border:0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><p class="a t demo-caption" style="left:146px;top:5233px;width:769px;text-align:center;font-size:29px;line-height:36px;font-weight:900">图鉴展示</p>
+<iframe class="a demo" src="https://player.bilibili.com/player.html?bvid=BV1ZeyozHEV2&amp;page=3&amp;autoplay=0" title="角色图鉴及换装" style="left:974px;top:4200px;width:769px;height:433px;border:0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><p class="a t demo-caption" style="left:974px;top:4656px;width:769px;text-align:center;font-size:29px;line-height:36px;font-weight:900">角色图鉴及换装</p>
+<iframe class="a demo" src="https://player.bilibili.com/player.html?bvid=BV1ZeyozHEV2&amp;page=2&amp;autoplay=0" title="地图交互" style="left:974px;top:4778px;width:769px;height:432px;border:0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><p class="a t demo-caption" style="left:974px;top:5233px;width:769px;text-align:center;font-size:29px;line-height:36px;font-weight:900">地图交互</p>
+<i class="a" style="left:775px;top:2138px;width:320px;height:52px;background:#000;"></i>
+<i class="a" style="left:398px;top:2248px;width:176px;height:52px;background:#000;"></i>
+<i class="a" style="left:423px;top:2354px;width:111px;height:52px;background:#000;opacity:0.44"></i>
+<i class="a" style="left:861px;top:2595px;width:149px;height:52px;background:#000;"></i>
+<i class="a" style="left:1290px;top:2270px;width:151px;height:52px;background:#000;"></i>
+<p class="a t b" style="left:893px;top:2148px;font-size:20px;letter-spacing:0.8px;line-height:29px;color:#fff;">进入游戏</p>
+<p class="a t b" style="left:445px;top:2258px;font-size:20px;letter-spacing:0.8px;line-height:29px;color:#fff;">剧情系统</p>
+<p class="a t b" style="left:458px;top:2366px;font-size:20px;letter-spacing:0.8px;line-height:29px;color:#fff;opacity:0.44">主线</p>
+<p class="a t b" style="left:896px;top:2607px;font-size:20px;letter-spacing:0.8px;line-height:29px;color:#fff;">图鉴系统</p>
+<p class="a t b" style="left:1304px;top:2281px;font-size:20px;letter-spacing:0.8px;line-height:29px;color:#fff;">地图探索系统</p>
+<p class="a t" style="left:304px;top:2256px;font-size:16px;letter-spacing:0.64px;line-height:29px;">剧情解锁</p>
+<p class="a t" style="left:1326px;top:2235px;font-size:16px;letter-spacing:0.64px;line-height:29px;">新地图解锁</p>
+<p class="a t" style="left:304px;top:2356px;font-size:16px;letter-spacing:0.64px;line-height:29px;">解锁条件</p>
+<p class="a t" style="left:660px;top:2342px;font-size:16px;letter-spacing:0.64px;line-height:29px;">解锁条件</p>
+<p class="a t" style="left:304px;top:2379px;font-size:16px;letter-spacing:0.64px;line-height:29px;">完成前置章节</p>
+<p class="a t" style="left:736px;top:2342px;font-size:16px;letter-spacing:0.64px;line-height:29px;">完成关联章节</p>
+<p class="a t" style="left:355px;top:2475px;font-size:16px;letter-spacing:0.64px;line-height:29px;">新剧情解锁</p>
+<p class="a t" style="left:1198px;top:2359px;font-size:16px;letter-spacing:0.64px;line-height:29px;">地图交互点位调查</p>
+<p class="a t" style="left:1198px;top:2425px;font-size:16px;letter-spacing:0.64px;line-height:29px;">随机出现重要NPC可进行对话</p>
+<p class="a t b" style="left:473px;top:2496px;font-size:16px;letter-spacing:0.64px;line-height:29px;">奖励</p>
+<p class="a t b" style="left:438px;top:2652px;font-size:16px;letter-spacing:0.64px;line-height:29px;">装扮</p>
+<p class="a t b" style="left:1169px;top:2359px;font-size:16px;letter-spacing:0.64px;line-height:29px;">①</p>
+<p class="a t b" style="left:1169px;top:2425px;font-size:16px;letter-spacing:0.64px;line-height:29px;">②</p>
+<p class="a t b" style="left:862px;top:2661px;font-size:16px;letter-spacing:0.64px;line-height:29px;">①</p>
+<p class="a t b" style="left:889px;top:2661px;font-size:16px;letter-spacing:0.64px;line-height:29px;">联系簿</p>
+<p class="a t b" style="left:862px;top:2689px;font-size:16px;letter-spacing:0.64px;line-height:29px;">②</p>
+<p class="a t b" style="left:889px;top:2689px;font-size:16px;letter-spacing:0.64px;line-height:29px;">万象站</p>
+<p class="a t b" style="left:862px;top:2718px;font-size:16px;letter-spacing:0.64px;line-height:29px;">③</p>
+<p class="a t b" style="left:889px;top:2718px;font-size:16px;letter-spacing:0.64px;line-height:29px;">作品百科</p>
+<p class="a t" style="left:578px;top:2588px;font-size:15px;letter-spacing:0.6px;line-height:29px;">剧情出现重要概念进入&lt;图鉴&gt;</p>
+<p class="a t" style="left:897px;top:2562px;font-size:15px;letter-spacing:0.6px;line-height:29px;">收集度</p>
+<p class="a t" style="left:1107px;top:2588px;font-size:15px;letter-spacing:0.6px;line-height:29px;">地图探索获得重要概念进入&lt;图鉴&gt;</p>
+<span class="a c" style="left:946px;top:2559px;width:30.322px;height:34.749px"><b class="t b" style="font-size:15px;letter-spacing:.6px;line-height:29px;transform:rotate(21.96deg)">up</b></span>
+<i class="a" style="left:793px;top:2374px;width:36px;height:33px;background:#fff;"></i>
+<p class="a t" style="left:661px;top:2375px;font-size:16px;letter-spacing:0.64px;line-height:29px;">随主线不定期解锁<b>支线</b></p>
+<span class="a v" style="left:939px;top:2202px;width:0px;height:38px"><i style="inset:0 0 0 -2px"><img src="./assets/img/imgGroup590.svg" alt=""></i></span>
+<span class="a c" style="left:480px;top:2308px;width:0px;height:38px"><span class="v" style="width:38px;height:0px;transform:rotate(-90deg)"><i style="inset:-2px 0 0 0"><img src="./assets/img/imgLine440.svg" alt=""></i></span></span>
+<span class="a c" style="left:479px;top:2413px;width:0px;height:69px"><span class="v" style="width:69px;height:0px;transform:rotate(-90deg)"><i style="inset:-1px 0"><img src="./assets/img/imgLine442.svg" alt=""></i></span></span>
+<span class="a c" style="left:479px;top:2532px;width:0px;height:146px"><span class="v" style="width:146px;height:0px;transform:rotate(90deg)"><i style="inset:-1px 0"><img src="./assets/img/imgLine447.svg" alt=""></i></span></span>
+<span class="a c" style="left:500px;top:2532px;width:0px;height:85px"><span class="v" style="width:85px;height:0px;transform:rotate(90deg)"><i style="inset:-1px 0"><img src="./assets/img/imgLine448.svg" alt=""></i></span></span>
+<span class="a c" style="left:501px;top:2446px;width:0px;height:43px"><span class="v" style="width:43px;height:0px;transform:rotate(-90deg)"><i style="inset:-2px 0 0 0"><img src="./assets/img/imgLine445.svg" alt=""></i></span></span>
+<span class="a c" style="left:732px;top:2410px;width:0px;height:36px"><span class="v" style="width:36px;height:0px;transform:rotate(-90deg)"><i style="inset:-2px 0 0 0"><img src="./assets/img/imgLine443.svg" alt=""></i></span></span>
+<span class="a c" style="left:501px;top:2446px;width:231px;height:0px"><span class="v" style="width:231px;height:0px;transform:rotate(180deg)"><i style="inset:-2px 0 0 0"><img src="./assets/img/imgLine444.svg" alt=""></i></span></span>
+<span class="a v" style="left:336px;top:2508px;width:126px;height:0px"><i style="inset:-2px 0 0 0"><img src="./assets/img/imgLine446.svg" alt=""></i></span>
+<span class="a c" style="left:479px;top:2457px;width:0px;height:34px"><span class="v" style="width:34px;height:0px;transform:rotate(90deg)"><i style="inset:-7.36px -2.94% -7.36px 0"><img src="./assets/img/imgArrow43.svg" alt=""></i></span></span>
+<span class="a v" style="left:501px;top:2616px;width:350px;height:0px"><i style="inset:-7.36px -0.29% -7.36px 0"><img src="./assets/img/imgArrow48.svg" alt=""></i></span>
+<span class="a c" style="left:1023px;top:2615px;width:352px;height:0px"><span class="v" style="width:352px;height:0px;transform:rotate(180deg)"><i style="inset:-7.36px -0.28% -7.36px 0"><img src="./assets/img/imgArrow49.svg" alt=""></i></span></span>
+<span class="a v" style="left:478px;top:2677px;width:373px;height:0px"><i style="inset:-7.36px -0.27% -7.36px 0"><img src="./assets/img/imgArrow47.svg" alt=""></i></span>
+<span class="a c" style="left:500px;top:2458px;width:0px;height:34px"><span class="v" style="width:34px;height:0px;transform:rotate(90deg)"><i style="inset:-7.36px -2.94% -7.36px 0"><img src="./assets/img/imgArrow44.svg" alt=""></i></span></span>
+<span class="a v" style="left:551px;top:2382px;width:96px;height:0px"><i style="inset:-2px 0 0 0"><img src="./assets/img/imgLine441.svg" alt=""></i></span>
+<span class="a c" style="left:337px;top:2476px;width:0px;height:31px"><span class="v" style="width:31px;height:0px;transform:rotate(-90deg)"><i style="inset:-7.36px -3.23% -7.36px 0"><img src="./assets/img/imgArrow45.svg" alt=""></i></span></span>
+<span class="a c" style="left:1376px;top:2474px;width:0px;height:141px"><span class="v" style="width:141px;height:0px;transform:rotate(-90deg)"><i style="inset:-2px 0 0 0"><img src="./assets/img/imgLine449.svg" alt=""></i></span></span>
+<span class="a v" style="left:478px;top:2228.99px;width:895.996px;height:1.012px"><i style="inset:-98.82% 0 0 0"><img src="./assets/img/imgGroup591.svg" alt=""></i></span>
+<span class="a v" style="left:1455px;top:2300px;width:81px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine450.svg" alt=""></i></span>
+<span class="a v" style="left:1371px;top:2377px;width:99px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine451.svg" alt=""></i></span>
+<span class="a v" style="left:1425px;top:2441px;width:45px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine453.svg" alt=""></i></span>
+<span class="a c" style="left:196px;top:2271px;width:92px;height:0px"><span class="v" style="width:92px;height:0px;transform:rotate(180deg)"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine454.svg" alt=""></i></span></span>
+<span class="a v" style="left:945px;top:2676px;width:113px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine459.svg" alt=""></i></span>
+<span class="a v" style="left:945px;top:2706px;width:189px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine464.svg" alt=""></i></span>
+<span class="a v" style="left:962px;top:2734px;width:172px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine465.svg" alt=""></i></span>
+<span class="a v" style="left:1060px;top:2658px;width:8px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine461.svg" alt=""></i></span>
+<span class="a v" style="left:1060px;top:2695px;width:8px;height:0px"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine461.svg" alt=""></i></span>
+<span class="a c" style="left:1059px;top:2657px;width:0px;height:38px"><span class="v" style="width:38px;height:0px;transform:rotate(90deg)"><i style="inset:-1px 0 0 0"><img src="./assets/img/imgLine460.svg" alt=""></i></span></span>
+<p class="a t" style="left:1546px;top:2283px;font-size:13px;letter-spacing:0.52px;line-height:29px;">共有16条街道</p>
+<p class="a t" style="left:1481px;top:2347px;font-size:13px;letter-spacing:0.52px;line-height:29px;">可获得物品/商品信息</p>
+<p class="a t" style="left:1481px;top:2386px;font-size:13px;letter-spacing:0.52px;line-height:29px;">特殊点位可进行特殊互动</p>
+<p class="a t" style="left:1481px;top:2367px;font-size:13px;letter-spacing:0.52px;line-height:29px;">固定NPC可进行互动</p>
+<p class="a t" style="left:1481px;top:2429px;font-size:13px;letter-spacing:0.52px;line-height:21px;">重要NPC按照设定权重，随机出现在地图上，可进行交互。</p>
+<i class="a ok" style="left:1637.94px;top:2352.33px"></i>
+<span class="a c" style="left:1635px;top:2350px;width:28.685px;height:25.278px"><span class="v" style="width:26.78px;height:23.032px;transform:rotate(5deg)"><i style="inset:0 -18.38% -8.68% 0"><img src="./assets/img/imgGroup606.svg" alt=""></i></span></span>
+<i class="a ok" style="left:1637.94px;top:2385.33px"></i>
+<span class="a c" style="left:1634.996px;top:2383px;width:28.685px;height:25.278px"><span class="v" style="width:26.78px;height:23.032px;transform:rotate(5deg)"><i style="inset:0 -18.38% -8.68% 0"><img src="./assets/img/imgGroup606.svg" alt=""></i></span></span>
+<i class="a ok" style="left:48.94px;top:2286.33px"></i>
+<span class="a c" style="left:46px;top:2284px;width:28.685px;height:25.278px"><span class="v" style="width:26.78px;height:23.032px;transform:rotate(5deg)"><i style="inset:0 -18.38% -8.68% 0"><img src="./assets/img/imgGroup606.svg" alt=""></i></span></span>
+<i class="a ok" style="left:47.94px;top:2150.33px"></i>
+<span class="a c" style="left:45px;top:2148px;width:28.685px;height:25.278px"><span class="v" style="width:26.78px;height:23.032px;transform:rotate(5deg)"><i style="inset:0 -18.38% -8.68% 0"><img src="./assets/img/imgGroup606.svg" alt=""></i></span></span>
+<i class="a ok" style="left:1140.94px;top:2659.33px"></i>
+<span class="a c" style="left:1138px;top:2657px;width:28.685px;height:25.278px"><span class="v" style="width:26.78px;height:23.032px;transform:rotate(5deg)"><i style="inset:0 -18.38% -8.68% 0"><img src="./assets/img/imgGroup606.svg" alt=""></i></span></span>
+<i class="a ok" style="left:1140.95px;top:2692.33px"></i>
+<span class="a c" style="left:1138.01px;top:2690px;width:28.685px;height:25.278px"><span class="v" style="width:26.78px;height:23.032px;transform:rotate(5deg)"><i style="inset:0 -18.38% -8.68% 0"><img src="./assets/img/imgGroup606.svg" alt=""></i></span></span>
+<i class="a ok" style="left:1140.95px;top:2725.33px"></i>
+<span class="a c" style="left:1138.01px;top:2723px;width:28.685px;height:25.278px"><span class="v" style="width:26.78px;height:23.032px;transform:rotate(5deg)"><i style="inset:0 -18.38% -8.68% 0"><img src="./assets/img/imgGroup606.svg" alt=""></i></span></span>
+<p class="a t" style="left:1672px;top:2357px;font-size:13px;letter-spacing:0.52px;line-height:29px;color:#373737;">信息调查&amp;商品调查 已跑通</p>
+<p class="a t" style="left:1672px;top:2339px;font-size:13px;letter-spacing:0.52px;line-height:29px;color:#373737;">四条街道交互点 已整理</p>
+<p class="a t" style="left:1672px;top:2384px;font-size:13px;letter-spacing:0.52px;line-height:29px;color:#373737;">固定NPC互动/对话已接通</p>
+<p class="a t" style="left:48px;top:2257px;font-size:14px;letter-spacing:0.56px;line-height:29px;">当前共有7章主线剧情</p>
+<p class="a t" style="left:85px;top:2284px;font-size:14px;letter-spacing:0.56px;line-height:29px;color:#373737;">已完成第零章（16节）AVG</p>
+<img class="a" src="./assets/img/imgRectangle635.png" alt="" style="left:81px;top:2153px;width:171px;height:21px">
+<p class="a t" style="left:85px;top:2149px;font-size:14px;letter-spacing:0.56px;line-height:29px;">此标志为当前版本已完成</p>
+<p class="a t" style="left:1075px;top:2643px;font-size:10px;letter-spacing:0.4px;line-height:29px;">角色信息</p>
+<p class="a t" style="left:1178px;top:2658px;font-size:14px;letter-spacing:0.56px;line-height:29px;color:#373737;">共88个有骨骼重要角色，已置入角色信息和换装功能。</p>
+<p class="a t" style="left:1178px;top:2692px;font-size:14px;letter-spacing:0.56px;line-height:29px;color:#373737;">四个类目下共128个条目</p>
+<p class="a t" style="left:1178px;top:2724px;font-size:14px;letter-spacing:0.56px;line-height:29px;color:#373737;">八个类目下共347个条目</p>
+<i class="a" style="left:1070px;top:2682px;width:62px;height:17px;background:#000;"></i>
+<p class="a t b" style="left:1075px;top:2676px;font-size:13px;letter-spacing:0.52px;line-height:29px;color:#fff;">换装系统</p>
+<section class="a card" style="left:34px;top:39px;width:1814px;height:960px" aria-label="自负 · 叙事向RPG游戏"><img class="a" src="./assets/img/img213.webp" alt="" style="left:-36px;top:-11.44px;width:1885.997px;height:1060.873px;object-fit:cover"><img class="a tiles" src="./assets/img/hero-tiles.svg" alt="" style="left:0;top:0;width:1814px;height:960px"><img class="a" src="./assets/img/img144.webp" alt="自负 主要角色立绘" style="left:317.71px;top:54px;width:1495.923px;height:905.735px;object-fit:cover"><h1 class="a xh sticker" style="left:104.56px;top:350px;font-size:36px">叙事向RPG游戏</h1><p class="a tag" style="left:91px;top:404px">&lt;叙事&gt;</p><p class="a tag" style="left:178px;top:404px">&lt;探索&gt;</p><p class="a tag" style="left:265px;top:404px">&lt;收集&gt;</p></section>
+<div class="a" style="left:34px;top:39px;width:428px;height:350px;overflow:hidden"><img src="./assets/img/img151.webp" alt="自负 ARROGISM" style="position:absolute;left:-73.28%;top:-34.42%;width:254.56%;height:174.95%;max-width:none"></div>
+<span class="a c" style="left:-64px;top:-62px;width:249.418px;height:235.622px"><span class="v" style="width:208.456px;height:137.839px;transform:rotate(-37.06deg)"><i style="inset:0 6.7% 25% 6.7%"><img src="./assets/img/imgPolygon42.svg" alt=""></i></span></span>
+<h2 class="a hd" style="left:1484px;top:4084px">&lt; 实机演示 &gt;</h2>
+<i class="a" style="left:0px;top:999px;width:34px;height:4401px;background:#000;"></i>
+<i class="a" style="left:1846px;top:999px;width:34px;height:4401px;background:#000;"></i>
+<i class="a" style="left:0px;top:999px;width:1880px;height:39px;background:#000;"></i>
+<section class="a p2" id="overview" data-tabs aria-label="项目概述">
+<div class="pn is-on" id="pn-overview" role="tabpanel" aria-labelledby="tb-overview" data-panel="overview"><p class="a para" style="left:142px;top:1384px;width:619px"><b>定位：</b>本作品是一款以叙事为核心的<b class="hl">角色扮演</b>游戏。玩家将扮演主角“吴向寓”，在“宙际”这个充满幻想科技的地方，跟随剧情的推进与探索区域的扩张， 而成长、发现、感悟。</p><p class="a para" style="left:142px;top:1526px;width:619px"><b>背景设定</b>：游戏采用原创架空世界观，由人与神在内的多种族共同构成。世界体系复杂，多价值观并存。希望给玩家们呈现一个带有成人童话质感般的沉重却温柔的世界。</p><p class="a para" style="left:142px;top:1667px;width:619px"><b>游戏基调</b>：黑色童话风格，温馨与沉重并存的游戏氛围，呈现人们对于幸福、归属与个人信念的不同理解。</p><img class="a ovimg" src="./assets/img/p2-ov.webp" alt="项目概述插画：黑费露" style="left:896px;top:1113px;width:949.609px;height:942.992px;object-fit:cover"></div>
+<div class="pn" id="pn-story" role="tabpanel" aria-labelledby="tb-story" data-panel="story" hidden><i class="a pbox" style="left:117px;top:1208px;width:1637px;height:830px"></i><img class="a" src="./assets/img/p2-story-1.webp" alt="蓝线（原笔头线）：吴向寓、有德元、非显色" loading="lazy" style="left:181.54px;top:1236.53px;width:676.174px;height:236.903px"><img class="a" src="./assets/img/p2-story-2.webp" alt="紫线（市政厅线）：吴静、林锡斌、高知盈" loading="lazy" style="left:181.54px;top:1482.95px;width:676.174px;height:247.617px"><img class="a" src="./assets/img/p2-story-3.webp" alt="黑线（混沌线）：王、谏立克" loading="lazy" style="left:181.54px;top:1724.62px;width:666.651px;height:261.903px"><i class="a" style="left:1046.23px;top:1300.88px;width:8px;height:597.78px;background:#afada8"></i><i class="a" style="left:962.4px;top:1294px;width:89.34px;height:8px;background:#afada8"></i><i class="a" style="left:962.4px;top:1596.87px;width:270.21px;height:8px;background:#afada8"></i><i class="a" style="left:962.4px;top:1894.66px;width:83.82px;height:8px;background:#afada8"></i><img class="a" src="./assets/img/p2-story-4.webp" alt="三线收束与核心：黑费露" loading="lazy" style="left:1288.86px;top:1190.59px;width:358.325px;height:849.996px"></div>
+<div class="pn" id="pn-core" role="tabpanel" aria-labelledby="tb-core" data-panel="core" hidden><i class="a pbox" style="left:117px;top:1208px;width:1637px;height:830px"></i><img class="a" src="./assets/img/p2-core-1.webp" alt="核心概念：幸福理论" loading="lazy" style="left:175px;top:1195px;width:1359px;height:226px"><img class="a" src="./assets/img/p2-core-2.webp" alt="核心概念：救世主罪犯" loading="lazy" style="left:175px;top:1421px;width:1359px;height:229px"><img class="a" src="./assets/img/p2-core-3.webp" alt="核心概念：钟庭科技" loading="lazy" style="left:175px;top:1650px;width:1359px;height:386px"></div>
+<div class="pn" id="pn-ip" role="tabpanel" aria-labelledby="tb-ip" data-panel="ip" hidden><i class="a pbox" style="left:117px;top:1208px;width:1637px;height:830px"></i><img class="a" src="./assets/img/p2-ip-1.webp" alt="IP特色：追更制IP、解谜" loading="lazy" style="left:233px;top:1222px;width:1211px;height:523px"><img class="a" src="./assets/img/p2-ip-2.webp" alt="IP特色：社会关怀与真实叙事" loading="lazy" style="left:233px;top:1706px;width:1211px;height:271px"></div>
+<div class="a tabs" role="tablist" aria-label="项目概述切换" style="left:66px;top:1089px">
+<button class="tab is-on" type="button" role="tab" id="tb-overview" aria-controls="pn-overview" aria-selected="true" tabindex="0" data-tab="overview"><img class="tab__big" src="./assets/img/imgRectangle627.png" alt=""><span class="tab__small"><img src="./assets/img/p2-paper-s.png" alt=""></span><span class="tab__icon"><span class="v" style="left:39px;top:0;width:39.628px;height:70.653px"><i style="inset:0 -5.05% -2.83% 0"><img src="./assets/img/imgGroup580.svg" alt=""></i></span><span class="c" style="left:0;top:3px;width:50.748px;height:63.869px"><span class="v" style="width:38.728px;height:56.433px;transform:rotate(13.4deg)"><i style="inset:0 -2.59% -3.54% 0"><img src="./assets/img/imgGroup579.svg" alt=""></i></span></span></span><span class="tab__label">项目概述</span></button>
+<button class="tab" type="button" role="tab" id="tb-story" aria-controls="pn-story" aria-selected="false" tabindex="-1" data-tab="story"><img class="tab__big" src="./assets/img/imgRectangle627.png" alt=""><span class="tab__small"><img src="./assets/img/p2-paper-s.png" alt=""></span><span class="tab__icon"><span class="v" style="left:39px;top:0;width:39.628px;height:70.653px"><i style="inset:0 -5.05% -2.83% 0"><img src="./assets/img/imgGroup580.svg" alt=""></i></span><span class="c" style="left:0;top:3px;width:50.748px;height:63.869px"><span class="v" style="width:38.728px;height:56.433px;transform:rotate(13.4deg)"><i style="inset:0 -2.59% -3.54% 0"><img src="./assets/img/imgGroup579.svg" alt=""></i></span></span></span><span class="tab__label">故事线</span><i class="tab__dot" aria-hidden="true"></i></button>
+<button class="tab" type="button" role="tab" id="tb-core" aria-controls="pn-core" aria-selected="false" tabindex="-1" data-tab="core"><img class="tab__big" src="./assets/img/imgRectangle627.png" alt=""><span class="tab__small"><img src="./assets/img/p2-paper-s.png" alt=""></span><span class="tab__icon"><span class="v" style="left:39px;top:0;width:39.628px;height:70.653px"><i style="inset:0 -5.05% -2.83% 0"><img src="./assets/img/imgGroup580.svg" alt=""></i></span><span class="c" style="left:0;top:3px;width:50.748px;height:63.869px"><span class="v" style="width:38.728px;height:56.433px;transform:rotate(13.4deg)"><i style="inset:0 -2.59% -3.54% 0"><img src="./assets/img/imgGroup579.svg" alt=""></i></span></span></span><span class="tab__label">核心概念</span><i class="tab__dot" aria-hidden="true"></i></button>
+<button class="tab" type="button" role="tab" id="tb-ip" aria-controls="pn-ip" aria-selected="false" tabindex="-1" data-tab="ip"><img class="tab__big" src="./assets/img/imgRectangle627.png" alt=""><span class="tab__small"><img src="./assets/img/p2-paper-s.png" alt=""></span><span class="tab__icon"><span class="v" style="left:39px;top:0;width:39.628px;height:70.653px"><i style="inset:0 -5.05% -2.83% 0"><img src="./assets/img/imgGroup580.svg" alt=""></i></span><span class="c" style="left:0;top:3px;width:50.748px;height:63.869px"><span class="v" style="width:38.728px;height:56.433px;transform:rotate(13.4deg)"><i style="inset:0 -2.59% -3.54% 0"><img src="./assets/img/imgGroup579.svg" alt=""></i></span></span></span><span class="tab__label">IP特色</span><i class="tab__dot" aria-hidden="true"></i></button>
+</div></section>
+</div>
+</main>
+<script>
+(function(){var w=document.getElementById('wrap'),st=document.getElementById('stage');
+function fit(){var s=document.documentElement.clientWidth/1880;st.style.setProperty('--s',s);w.style.height=(5400*s)+'px'}
+fit();addEventListener('resize',fit);})();
+</script>
+<script>
+document.querySelectorAll('[data-tabs]').forEach(function(box){
+  var tabs=[].slice.call(box.querySelectorAll('[data-tab]')),panels=[].slice.call(box.querySelectorAll('[data-panel]'));
+  function show(tab,focus){
+    var k=tab.dataset.tab;
+    tabs.forEach(function(t){var on=t===tab;t.classList.toggle('is-on',on);t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;
+      if(on){var d=t.querySelector('.tab__dot');if(d)d.classList.add('is-seen')}});
+    panels.forEach(function(p){var on=p.dataset.panel===k;p.classList.toggle('is-on',on);p.hidden=!on});
+    if(focus)tab.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t)});
+    t.addEventListener('keydown',function(e){
+      var n={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabs.length-1}[e.key];
+      if(n===undefined)return;e.preventDefault();show(tabs[(n+tabs.length)%tabs.length],true)});
+  });
+});
+</script>
+</body>
+</html>
